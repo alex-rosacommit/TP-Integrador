@@ -11,18 +11,35 @@ public class Pronostico {
 		this.result = resultado;
 	}
 	
+	public Pronostico(Partido partido, ResultadoEnum resultado) {
+		this.match = partido;
+		this.result = resultado;
+	}
+	
+	public Partido getPartido() {
+		return this.match;
+	}
+	
+	public Equipo getEquipo() {
+		return this.team;
+	}
+	
+	public ResultadoEnum getResultado() {
+		return this.result;
+	}
+	
 	public int puntos() {
-		System.out.println(match.resultado(team));
-		ResultadoEnum prediccion = match.resultado(team);
+		ResultadoEnum prediccion;
+		
+		if(team != null) {
+			prediccion = match.resultado(team);
+		}else {
+			prediccion = match.resultado(result);
+		}
 		
 		if(result == prediccion) {
 			return 1;
 		}
 		return 0;
-	}
-	
-	public String partidoPronostico() {
-		String enfrentamiento = match.getNombreEquipo1() + " vs " + match.getNombreEquipo1(); 
-		return enfrentamiento;
 	}
 }

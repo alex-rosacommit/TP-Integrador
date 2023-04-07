@@ -39,16 +39,26 @@ public class TPIntegradorClass {
 		// Instanciacion de Ronda con el array de partidos leidos desde el archivo resultados.txt
 		nuevaRonda = new Ronda(arrayPartidos, "Ronda 1");
 		
+		//Muestra resultados de los partidos
 		nuevaRonda.verPartidos();
 
-		//Lee archivo -pronostico.txt-
+		//Lee archivo -pronostico.txt- instancia equipos
 		resultadosPronostico = LeerArchivo(pronosticoUrl);
-		Equipo equipoPronostico = new Equipo("Arabia Saudita");
-				
-		Pronostico nuevoPronostico = new Pronostico(arrayPartidos[0], equipoPronostico, ResultadoEnum.GANADOR);
+		Equipo equipoPronostico = new Equipo("Argentina");
+		Equipo equipoPronostico2 = new Equipo("Polonia");
 		
-		Persona nuevaPersona = new Persona("Alex", nuevoPronostico);
+		// Crea los pronosticos
+		Pronostico pronostico1 = new Pronostico(arrayPartidos[0], equipoPronostico, ResultadoEnum.GANADOR);
+		Pronostico pronostico2 = new Pronostico(arrayPartidos[1], ResultadoEnum.EMPATE);
 		
+		Pronostico[] pronosticoArray = new Pronostico[] {pronostico1, pronostico2};
+		
+		// Instancia una persona se le asigna un nombre y los pronosticos leidos de archivo
+		Persona nuevaPersona = new Persona("Alex", pronosticoArray);
+		
+		//Muestra el pronostico realizado por la persona
+		nuevaPersona.verPRonostico();
+		//Consulta la cantidad de aciertos en los pronosticos de la persona.
 		nuevaPersona.verPuntos();
 		
 	}

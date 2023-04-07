@@ -15,36 +15,36 @@ public class Partido {
 	
 	public ResultadoEnum resultado(Equipo equipoExtra) {
 		
-		ResultadoEnum resultado = ResultadoEnum.EMPATE;
+		String nombreEquip1 = equipo1.getNombre();
+		String nombreEquip2 = equipo2.getNombre();
+		String nombreEquipExt = equipoExtra.getNombre();
 		
-		if(golesEquipo1 > golesEquipo2 ) {
-			if(equipo1.getNombre() == equipoExtra.getNombre()) {
-				resultado =  ResultadoEnum.GANADOR;
-				
+		if(golesEquipo2 > golesEquipo1) {
+			if(nombreEquip2.equals(nombreEquipExt)) {
+				return ResultadoEnum.GANADOR;
+			}
+			if(nombreEquip1.equals(nombreEquipExt)) {
+				return ResultadoEnum.PERDEDOR;
 			}
 		}
 		
-		if(golesEquipo1 < golesEquipo2 ) {
-			if(equipo1.getNombre() == equipoExtra.getNombre()) {
-				resultado =  ResultadoEnum.PERDEDOR;
+		if(golesEquipo1 > golesEquipo2) {
+			if(nombreEquip1.equals(nombreEquipExt)) {
+				return ResultadoEnum.GANADOR;
+			}
+			if(nombreEquip2.equals(nombreEquipExt)) {
+				return ResultadoEnum.PERDEDOR;
 			}
 		}
 		
-		if(golesEquipo2 > golesEquipo1 ) {
-			
-			if(equipo2.getNombre() == equipoExtra.getNombre()) {
-				resultado = ResultadoEnum.GANADOR;
-			}
+		return ResultadoEnum.EMPATE;
+	}
+	
+	public ResultadoEnum resultado(ResultadoEnum resultado) {
+		if(resultado != ResultadoEnum.EMPATE) {
+			return ResultadoEnum.PERDEDOR;
 		}
-		
-		if(golesEquipo2 < golesEquipo1 ) {
-					
-			if(equipo2.getNombre() == equipoExtra.getNombre()) {
-				resultado = ResultadoEnum.PERDEDOR;
-			}
-		}
-		
-		return resultado;
+		return ResultadoEnum.EMPATE;
 	}
 	
 	public String getNombreEquipo1() {
