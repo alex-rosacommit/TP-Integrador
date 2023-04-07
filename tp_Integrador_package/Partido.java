@@ -1,0 +1,63 @@
+package tp_Integrador_package;
+
+public class Partido {
+	private Equipo equipo1;
+	private Equipo equipo2;
+	private int golesEquipo1;
+	private int golesEquipo2;
+	
+	public Partido(Equipo team1, Equipo team2, int gTeam1, int gTeam2) {
+		this.equipo1 = team1;
+		this.equipo2 = team2;
+		this.golesEquipo1 = gTeam1;
+		this.golesEquipo2 = gTeam2;
+	}
+	
+	public ResultadoEnum resultado(Equipo equipoExtra) {
+		
+		ResultadoEnum resultado = ResultadoEnum.EMPATE;
+		
+		if(golesEquipo1 > golesEquipo2 ) {
+			if(equipo1.getNombre() == equipoExtra.getNombre()) {
+				resultado =  ResultadoEnum.GANADOR;
+				
+			}
+		}
+		
+		if(golesEquipo1 < golesEquipo2 ) {
+			if(equipo1.getNombre() == equipoExtra.getNombre()) {
+				resultado =  ResultadoEnum.PERDEDOR;
+			}
+		}
+		
+		if(golesEquipo2 > golesEquipo1 ) {
+			
+			if(equipo2.getNombre() == equipoExtra.getNombre()) {
+				resultado = ResultadoEnum.GANADOR;
+			}
+		}
+		
+		if(golesEquipo2 < golesEquipo1 ) {
+					
+			if(equipo2.getNombre() == equipoExtra.getNombre()) {
+				resultado = ResultadoEnum.PERDEDOR;
+			}
+		}
+		
+		return resultado;
+	}
+	
+	public String getNombreEquipo1() {
+		return this.equipo1.getNombre();
+	}
+	
+	public String getNombreEquipo2() {
+		return this.equipo2.getNombre();
+	}
+	
+	public void verPartido() {
+        System.out.printf("%15s\t\t %12s\t\t%12s \t\t%15s",equipo1.getNombre(), String.valueOf(this.golesEquipo1), String.valueOf(this.golesEquipo2), this.equipo2.getNombre());
+        System.out.println();
+        System.out.println();
+	}
+}
