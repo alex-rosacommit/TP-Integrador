@@ -1,27 +1,39 @@
 package tp_Integrador_package;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Persona {
 	private String nombre;
-	private Pronostico[] miPronostico = new Pronostico[2];
+	private List<Pronostico> miPronostico;
 	private int misPuntos;
 	
-	public Persona(String nom, Pronostico[] prono) {
-		this.miPronostico = prono;
+	public Persona(String nom, Pronostico prono) {
+		this.miPronostico = new ArrayList<Pronostico>();
+		this.miPronostico.add(prono);
 		this.nombre = nom;
 		this.misPuntos = 0;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void agregarPronostico(Pronostico prono) {
+		miPronostico.add(prono);
+	}
+	
 	public void verPuntos() {
-		for(int i = 0; i < miPronostico.length; i++) {
-			misPuntos = misPuntos + miPronostico[i].puntos();
+		for(Pronostico prono : miPronostico) {
+			misPuntos = misPuntos + prono.puntos();
 		}
 		System.out.println();
 		System.out.println();
-		System.out.printf("\t\t\t\tPuntaje = %5s", misPuntos);
+		System.out.printf("%10s = %5s",nombre, misPuntos);
 		System.out.println();
 	}
 	
-	public void verPRonostico() {
+	public void verPronostico() {
 		System.out.printf("\t\t\t\tPronosticos de: %2s", nombre );
 		System.out.println();
 		System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -34,19 +46,19 @@ public class Persona {
     	String empata = null;
     	String pierde = null;
         
-        for(int i = 0; i < miPronostico.length; i++) {
-        	part = miPronostico[i].getPartido();
+        for(Pronostico prono : miPronostico) {
+        	part = prono.getPartido();
         	gana = "";
         	empata = "";
         	pierde = "";
         	
-        	if(miPronostico[i].getResultado() == ResultadoEnum.GANADOR) {
+        	if(prono.getResultado() == ResultadoEnum.GANADOR) {
         		gana = "X";
         	}
-        	if(miPronostico[i].getResultado() == ResultadoEnum.PERDEDOR) {
+        	if(prono.getResultado() == ResultadoEnum.PERDEDOR) {
         		pierde = "X";
         	}
-        	if(miPronostico[i].getResultado() == ResultadoEnum.EMPATE) {
+        	if(prono.getResultado() == ResultadoEnum.EMPATE) {
         		empata = "X";
         	}
         	

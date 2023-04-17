@@ -2,7 +2,7 @@ package tp_Integrador_package;
 
 public class Pronostico {
 	private Partido match;
-	private Equipo team;
+	private Equipo team = null;
 	private ResultadoEnum result;
 	
 	public Pronostico(Partido partido, Equipo equipo, ResultadoEnum resultado) {
@@ -37,7 +37,7 @@ public class Pronostico {
 			prediccion = match.resultado(result);
 		}
 		
-		if(result == prediccion) {
+		if(result == prediccion && prediccion != null) {
 			return 1;
 		}
 		return 0;

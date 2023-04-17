@@ -41,10 +41,12 @@ public class Partido {
 	}
 	
 	public ResultadoEnum resultado(ResultadoEnum resultado) {
-		if(resultado != ResultadoEnum.EMPATE) {
-			return ResultadoEnum.PERDEDOR;
+		if(golesEquipo2 == golesEquipo1) {
+			return ResultadoEnum.EMPATE;
+		}else {
+			return null;
 		}
-		return ResultadoEnum.EMPATE;
+		
 	}
 	
 	public String getNombreEquipo1() {
